@@ -1,0 +1,10 @@
+/* resetando estilos globais */
+*{
+    margin: 0;
+    padding: 0%;
+    border: 0;
+    content: 0;
+    list-style: none;
+
+}
+
