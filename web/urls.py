@@ -24,5 +24,6 @@ from portifolio.urls import urlpatterns as urls_portifolio
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(urls_portifolio)),
+    path('lista_de_tarefas/', include('lista_de_tarefas.urls')),
 
 ]
