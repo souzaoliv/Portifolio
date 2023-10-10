@@ -1,0 +1,115 @@
+.conteiner-inicio{
+    background-color: #764248;
+    width: 100vw;
+    height: 80vh;
+    
+}
+
+.grid-conteiner-inicio{
+    width: 100vw;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1.7fr;
+    grid-template-areas: 
+    'texto foto'
+    'contato foto';
+    
+}
+
+.lado-contato{
+   
+    grid-area: contato;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding-left: 6rem;
+}
+.lado-texto{
+   
+    grid-area: texto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+.lado-foto{
+    
+    grid-area: foto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.rede{
+    background-color: #E9CA32;
+    width: 300px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: shakeX 1s;
+    transition: ease-in-out;
+}
+.rede :hover{
+    transform: scale(1.3);
+}
+
+
+.lado-foto img{
+    animation: go-back 2s infinite alternate-reverse linear;
+}
+
+@keyframes go-back {
+    0% {
+        transform: translateY(40px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.lado-foto > img{
+    border-radius: 280px;
+}
+@keyframes cursor{
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+@keyframes digitando{
+    from{
+        width:0 ;
+    }
+    to{
+        width: 480px;
+    }
+}
+.frase{
+    color:white ;
+    font-family: serif;
+    font-size: 25px;
+    border-right: 2px solid  rgba(255,255,255,0.75);
+    animation: cursor .7s infinite;
+    animation: digitando 4s steps(40) 1s normal;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+@media ( max-width:700px ){
+    html{
+        font-size: 50%;
+    }
+}
+@media(max-width:811px){
+    .lado-foto{
+        display: none;
+    }
+    
+}
