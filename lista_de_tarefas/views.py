@@ -11,7 +11,24 @@ def index(request):
     return render(request, 'lista_de_tarefas/index.html')
 
 
+def cadastrar(request):
+    ...
 
+def logar(request):
+    ...
+
+def deslogar(request):
+    ...
+
+def exibir_tarefas(request):
+    ...
+
+def criar_tarefa(request):
+    ...
+def editar_tarefa(request, pk):
+    ...
+def excluir_tarefa(request, pk):
+    ...
 
 
 
