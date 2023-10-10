@@ -1,0 +1,70 @@
+{% extends 'lista_de_tarefas/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title> Exibir tarefas </title>
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'lista_de_tarefas/assets/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'lista_de_tarefas/assets/css/Hero-Clean-Reverse-images.css' %}">
+<link rel="stylesheet" href="{% static 'lista_de_tarefas/assets/css/Navbar-Right-Links-icons.css' %}">
+<link rel="stylesheet" href="{% static 'lista_de_tarefas/assets/css/main.css' %}">
+{% endblock link %}
+
+{% block content %}
+<body>
+    <header>
+        {% include 'lista_de_tarefas/header.html'  %}
+    </header>
+    <main class="my">
+        <div class="container-fluid mw-100">
+            {% if tarefas %}
+            <div class="d-flex justify-content-center">
+                <h1>Tarefas</h1>
+            </div>
+            <div class="container-fluid">
+                <table class="table table-striped container-fluid d-block">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tarefa in tarefas %}
+                        <tr>
+                            <td>{{ tarefa.titulo }}</td>
+                            <td>{{ tarefa.descricao }}</td>
+                            <td class="">
+                                <a class="btn btn-warning btn-lg me-1" role="button" href="{% url 'editar_tarefa' tarefa.pk %}">Editar </a>
+                                <a class="btn btn-danger btn-lg me-1" role="button" href="{% url 'deletar_tarefa' tarefa.pk %}">Deletar </a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                   
+                </table>
+                <a class="btn btn-primary btn-lg me-2" role="button" href="{% url 'criar_tarefa' %}">Criar Tarefa</a>
+                
+            </div>
+            {% else %}
+            <div class="container py-4 py-xl-5">
+                <div class="row gy-4 gy-md-0">
+                    <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                        <div style="max-width: 350px;">
+                            <h2 class="text-uppercase fw-bold"><span style="color: rgb(35, 33, 21); background-color: rgb(254, 253, 252);">Cria sua tarefas aqui e tire do seu cerebro.</span></h2>
+                            <p class="my-3">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</p><a class="btn btn-primary btn-lg me-2" role="button" href="{% url 'criar_tarefa' %}">Criar Tarefa</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    <footer>
+        {% include 'lista_de_tarefas/footer.html'  %}
+    </footer>
+</body>
+{% endblock content %}
