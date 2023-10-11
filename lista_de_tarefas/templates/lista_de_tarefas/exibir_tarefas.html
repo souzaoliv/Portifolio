@@ -25,7 +25,7 @@
                     <tbody>
                         {% for tarefa in tarefas %}
                         <tr>
-                            <td>{{ tarefa.titulo }}</td>
+                            <td>{{ tarefa.nome }}</td>
                             <td>{{ tarefa.descricao }}</td>
                             <td class="">
                                 <a class="btn btn-warning btn-lg me-1" role="button" href="{% url 'editar_tarefa' tarefa.pk %}">Editar </a>

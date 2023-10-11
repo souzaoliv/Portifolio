@@ -15,7 +15,7 @@
             <div class="container-fluid ">
                      <form class="d-flex justify-content-center flex-column" method="POST" action="{% url 'criar_tarefa' %}">
                          {% csrf_token %}
-                        <div class="mb-3"><input class="form-control" type="text" name="titulo" placeholder="Nome" maxlength="100" required></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="nome" placeholder="Nome" maxlength="100" required></div>
                         <div class="mb-3"><input class="form-control" type="text" name="descricao" placeholder="Descrição" maxlength="500" ></div>
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Criar</button>
                          {% if messages %}
