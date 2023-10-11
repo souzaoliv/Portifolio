@@ -85,7 +85,30 @@ def exibir_tarefas(request):
 
 @require_http_methods(["POST", "GET"])
 def criar_tarefa(request):
-   ...
+    if request.user.is_authenticated:
+
+        username = request.user.username
+        context = {"username": username,}
+
+        if request.method == "GET":
+            return render(request, 'lista_de_tarefas/criar_tarefa.html', context)
+
+        else:
+            formulario = FormularioTarefas(request.POST)
+            if formulario.is_valid():
+                try:
+                    tarefa = formulario.save(commit=False)
+                    tarefa.usuario = request.user  # Associe a tarefa ao usuário logado
+                    tarefa.save()
+                    return redirect("exibir_tarefas")
+                except ValueError as e:
+                    print(e)
+                    messages.error(request, f'Erro ao salvar tarefa. Tente novamente!')
+                    return render(request, 'lista_de_tarefas/criar_tarefa.html', context)
+            else:
+                messages.error(request, f'Erro ao validar tarefa. Tente novamente!')
+                return render(request, 'lista_de_tarefas/criar_tarefa.html', context)
+
 
 
 def editar_tarefa(request, pk):
