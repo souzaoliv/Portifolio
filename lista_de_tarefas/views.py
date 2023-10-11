@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponse, HttpResponseRedirect
+
 from django.contrib import messages
 
 from .models import Tarefa
@@ -85,22 +85,8 @@ def exibir_tarefas(request):
 
 @require_http_methods(["POST", "GET"])
 def criar_tarefa(request):
+   ...
 
-    if request.method == "GET":
-        return render(request, 'lista_de_tarefas/criar_tarefa.html')
-    else:
-        formulario = FormularioTarefas(request.POST, user=request.user)
-        if formulario.is_valid():
-            try:
-                formulario.save()
-                redirect('exibir_tarefas')
-            except ValueError as e:
-                print(e)
-                messages.error(request, f'Erro ao criar tarefa. Tente novamente!')
-                return render(request, 'lista_de_tarefas/criar_tarefa.html')
-        else:
-            messages.error(request, f'Dados não validados. Tente novamente!')
-            return render(request, 'lista_de_tarefas/criar_tarefa.html')
 
 def editar_tarefa(request, pk):
     return render(request, 'lista_de_tarefas/editar_tarefa.html')
