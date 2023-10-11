@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 
 from .models import Tarefa
-
+from .formulario import FormularioTarefas
 # Create your views here.
 def index(request):
     return render(request, 'lista_de_tarefas/index.html')
@@ -32,7 +32,7 @@ def cadastrar(request):
             except ValueError as e:
                 print(e)
                 messages.error(request, f'Erro ao criar usuário "{username}" . Tente novamente!')
-                return render(request,'lista_de_tarefas/cadastrar.html')
+                return render(request, 'lista_de_tarefas/cadastrar.html')
 
 @require_http_methods(["POST", "GET"])
 def logar(request):
@@ -59,18 +59,54 @@ def logar(request):
                 messages.error(request, f'Erro ao logar usuário "{username}" . Tente novamente!')
                 return render(request, 'lista_de_tarefas/logar.html')
 
+@require_http_methods(["GET"])
 def deslogar(request):
-    ...
+    try:
+        logout(request)
+        return redirect('index_lista_de_tarefas')
+    except ValueError as e:
+        print(e)
+        messages.error(request, f'Erro ao deslogar usuário. Tente novamente!')
+        return redirect('exibir_tarefas')
 
+@require_http_methods(["GET"])
 def exibir_tarefas(request):
-    ...
+    if request.user.is_authenticated:
+        tarefas = Tarefa.objects.filter(usuario=request.user)
+        username = request.user.username
+        context = {
+            'tarefas': tarefas,
+            'username': username,
+        }
+        return render(request, 'lista_de_tarefas/exibir_tarefas.html', context=context)
+    else:
+        messages.error(request, f'Usuário não logado. Faça o login!')
+        return redirect('logar')
 
+@require_http_methods(["POST", "GET"])
 def criar_tarefa(request):
-    ...
+
+    if request.method == "GET":
+        return render(request, 'lista_de_tarefas/criar_tarefa.html')
+    else:
+        formulario = FormularioTarefas(request.POST, user=request.user)
+        if formulario.is_valid():
+            try:
+                formulario.save()
+                redirect('exibir_tarefas')
+            except ValueError as e:
+                print(e)
+                messages.error(request, f'Erro ao criar tarefa. Tente novamente!')
+                return render(request, 'lista_de_tarefas/criar_tarefa.html')
+        else:
+            messages.error(request, f'Dados não validados. Tente novamente!')
+            return render(request, 'lista_de_tarefas/criar_tarefa.html')
+
 def editar_tarefa(request, pk):
-    ...
+    return render(request, 'lista_de_tarefas/editar_tarefa.html')
 def excluir_tarefa(request, pk):
-    ...
+    return render(request, 'lista_de_tarefas/excluir_tarefa.html')
+
 
 
 
