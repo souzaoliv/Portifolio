@@ -9,15 +9,13 @@
                 <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
                     <div style="max-width: 350px;">
                         <h2 class="text-uppercase fw-bold"><span style="color: rgb(35, 33, 21); background-color: rgb(254, 253, 252);">Organize seu trabalho e sua vida, finalmente.</span></h2>
-                        <p class="my-3">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</p><a class="btn btn-primary btn-lg me-2" role="button" >Login</a><a class="btn btn-outline-primary btn-lg" role="button" >Cadastrar</a>
+                        <p class="my-3">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</p><a class="btn btn-primary btn-lg me-2" role="button" href="{% url 'logar' %}">Login</a><a class="btn btn-outline-primary btn-lg" role="button" href="{% url 'cadastrar' %}">Cadastrar</a>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="p-xl-5 m-xl-5">
-                        <img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="{% static 'lista_de_tarefas/assets/img/flame-training.gif' %}">
-                    </div>
+                    <div class="p-xl-5 m-xl-5"><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="{% static 'lista_de_tarefas/assets/img/flame-training.gif' %}"></div>
                 </div>
             </div>
-    </div>
+        </div>
 {% endblock content %}
 
