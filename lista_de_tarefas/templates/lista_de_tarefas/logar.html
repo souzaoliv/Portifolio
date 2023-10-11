@@ -28,6 +28,13 @@
                                     <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
                                     <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Login</button></div>
                                     <p class="text-muted"></p>
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ message.tags }}">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
                                 </form>
                             </div>
                         </div>
