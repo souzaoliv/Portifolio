@@ -14,7 +14,7 @@
                 <h1>Deletar Tarefa</h1>
             </div>
             <div class="container-fluid">
-                <form method="POST" class="d-flex justify-content-center flex-column" action="{% url 'excluir_tarefa' %}">
+                <form method="POST" class="d-flex justify-content-center flex-column">
                     {% csrf_token %}
                     {{form}}
                     <button type="submit" class="btn btn-danger"> Deletar </button>
