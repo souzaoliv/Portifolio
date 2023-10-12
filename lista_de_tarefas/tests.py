@@ -55,7 +55,60 @@ class TestPaginaTemplates(TestCase):
         self.assertTemplateUsed(response, 'lista_de_tarefas/excluir_tarefa.html')
 
 
+class TestFuncionalidades(TestCase):
+    def setUp(self):
+        self.client = Client()
+        User.objects.create_user(username='admin', password='correta')
+        Tarefa.objects.create(nome='nome', descricao='descricao', usuario=User.objects.get(id=1))
 
+    def test_cadastrar_usuario(self):
+        """ esperado CRIAR usuario cadastrado"""
+        self.client.post('/lista_de_tarefas/cadastrar/', {'username': 'novo_usuario', 'password': 'correta'})
+        self.assertTrue(User.objects.filter(username='novo_usuario').exists())
+    def test_cadastrar_usuario_existente(self):
+        """ esperado NEGAR cadastrar usuario existente"""
+        self.client.post('/lista_de_tarefas/cadastrar/', {'username': 'admin', 'password': 'correta'})
+        self.assertTrue(User.objects.filter(username='admin').count() == 1)
+
+    def test_logar_usuario(self):
+        """ esperado LOGAR usuario cadastrado"""
+        self.client.login(username='admin', password='correta')
+        response = self.client.get('/lista_de_tarefas/exibir_tarefas/')
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
+
+    def test_logar_usuario_nao_existente(self):
+        """ esperado NEGAR logar usuario nao cadastrado"""
+        self.client.login(username='nao_cadastrado', password='NaN')
+        response = self.client.get('/lista_de_tarefas/exibir_tarefas/')
+        self.assertFalse(response.wsgi_request.user.is_authenticated)
+
+    def test_deslogar_usuario(self):
+        """ esperado DESLOGAR usuario cadastrado"""
+        self.client.login(username='admin', password='correta')
+        response = self.client.get('/lista_de_tarefas/deslogar/')
+        self.assertFalse(response.wsgi_request.user.is_authenticated)
+
+    def test_criar_tarefa(self):
+        """ esperado CRIAR tarefa"""
+        self.client.login(username='admin', password='correta')
+        self.client.post('/lista_de_tarefas/criar_tarefa/', {'nome': 'nome', 'descricao': 'descricao'})
+        self.assertTrue(Tarefa.objects.filter(nome='nome').exists())
+    def test_editar_tarefa(self):
+        """ esperado EDITAR tarefa"""
+        self.client.login(username='admin', password='correta')
+        self.client.post('/lista_de_tarefas/editar_tarefa/1/', {'nome': 'nome_editado', 'descricao': 'descricao_editada'})
+        self.assertTrue(Tarefa.objects.filter(nome='nome_editado').exists())
+    def test_excluir_tarefa(self):
+        """ esperado EXCLUIR tarefa"""
+        self.client.login(username='admin', password='correta')
+        self.client.post('/lista_de_tarefas/excluir_tarefa/1/')
+        self.assertFalse(Tarefa.objects.filter(id=1).exists())
+
+    def test_exibir_tarefas(self):
+        """ esperado EXIBIR tarefas"""
+        self.client.login(username='admin', password='correta')
+        response = self.client.get('/lista_de_tarefas/exibir_tarefas/')
+        self.assertTrue(Tarefa.objects.filter(usuario=User.objects.get(username="admin")).exists())
 
 class Test_Autenticacao_A_Privilegios(TestCase):
     def setUp(self):
