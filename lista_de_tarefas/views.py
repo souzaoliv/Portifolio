@@ -110,11 +110,50 @@ def criar_tarefa(request):
                 return render(request, 'lista_de_tarefas/criar_tarefa.html', context)
 
 
-
+@require_http_methods(["GET", "POST", "PATCH"])
 def editar_tarefa(request, pk):
-    return render(request, 'lista_de_tarefas/editar_tarefa.html')
+    if request.user.is_authenticated:
+        tarefa = Tarefa.objects.get(pk=pk, usuario=request.user)
+        form = FormularioTarefas(request.POST or None, instance=tarefa)
+        username = request.user.username
+        if request.method == "POST" or request.method == "PATCH":
+            if form.is_valid():
+                try:
+                    form.save()
+                    return redirect("exibir_tarefas")
+                except ValueError as e:
+                    print(e)
+                    messages.error(request, f'Erro ao salvar tarefa. Tente novamente!')
+                    return render(request, 'lista_de_tarefas/editar_tarefa.html', {'form': form, 'username': username})
+            else:
+                messages.error(request, f'Erro ao validar tarefa. Tente novamente!')
+                return render(request, 'lista_de_tarefas/editar_tarefa.html', {'form': form, 'username': username})
+        else:
+            return render(request, 'lista_de_tarefas/editar_tarefa.html', {'form': form, 'username': username})
+
+    else:
+        redirect('logar')
+
+@require_http_methods(["POST", "GET", "DELETE"])
 def excluir_tarefa(request, pk):
-    return render(request, 'lista_de_tarefas/excluir_tarefa.html')
+    if request.user.is_authenticated:
+        tarefa = Tarefa.objects.get(pk=pk, usuario=request.user)
+        form = FormularioTarefas(request.POST or None, instance=tarefa)
+        username = request.user.username
+        if request.method == "POST" or request.method == "DELETE":
+            try:
+                tarefa.delete()
+                return redirect("exibir_tarefas")
+            except ValueError as e:
+                print(e)
+                messages.error(request, f'Erro ao excluir tarefa. Tente novamente!')
+                return render(request, 'lista_de_tarefas/excluir_tarefa.html', {'form': form, 'username': username})
+        else:
+            return render(request, 'lista_de_tarefas/excluir_tarefa.html', {'form': form, 'username': username})
+
+    else:
+        redirect('logar')
+
 
 
 
