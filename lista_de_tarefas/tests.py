@@ -158,3 +158,89 @@ class Test_Autenticacao_Rotas(TestCase):
         response = self.client.post('/lista_de_tarefas/logar/', {'username': 'admin', 'password': 'incorreta'})
         self.assertEqual(response.status_code, 200)
 
+class TestMetodosHttpIndex(TestCase):
+
+    def test_get_index(self):
+        """Esperado status 200 ok"""
+        response = self.client.get('/lista_de_tarefas/', {'username': 'novo_usuario', 'password': 'correta'})
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_index(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.post('/lista_de_tarefas/')
+        self.assertEqual(response.status_code, 405)
+
+    def test_patch_index(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.patch('/lista_de_tarefas/')
+        self.assertEqual(response.status_code, 405)
+
+    def test_put_index(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.put('/lista_de_tarefas/')
+        self.assertEqual(response.status_code, 405)
+
+    def test_delete_index(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.delete('/lista_de_tarefas/')
+        self.assertEqual(response.status_code, 405)
+
+class TestMetodosHttpCadastrar(TestCase):
+
+    def test_get_cadastrar(self):
+        """Esperado status 200 ok"""
+        response = self.client.get('/lista_de_tarefas/cadastrar/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_cadastrar(self):
+        """Esperado status 302 redirecionado """
+        response = self.client.post('/lista_de_tarefas/cadastrar/', {'username': 'novo_usuario', 'password': 'correta'})
+        self.assertEqual(response.status_code, 302)
+
+    def test_patch_cadastrar(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.patch('/lista_de_tarefas/cadastrar/')
+        self.assertEqual(response.status_code, 405)
+
+    def test_put_cadastrar(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.put('/lista_de_tarefas/cadastrar/')
+        self.assertEqual(response.status_code, 405)
+
+    def test_delete_cadastrar(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.delete('/lista_de_tarefas/cadastrar/')
+        self.assertEqual(response.status_code, 405)
+
+
+class TestMetodosHttpLogar(TestCase):
+    def setUp(self):
+        self.client = Client()
+        User.objects.create_user(username='admin', password='correta')
+    def test_get_logar(self):
+        """Esperado status 200 ok"""
+        self.client.login(username='admin', password='correta')
+        response = self.client.get('/lista_de_tarefas/logar/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_logar(self):
+        """Esperado status 302 redirecionado """
+        response = self.client.post('/lista_de_tarefas/logar/', {'username': 'novo_usuario', 'password': 'correta'})
+        self.assertEqual(response.status_code, 302)
+
+    def test_patch_logar(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.patch('/lista_de_tarefas/logar/')
+        self.assertEqual(response.status_code, 405)
+
+    def test_put_logar(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.put('/lista_de_tarefas/logar/')
+        self.assertEqual(response.status_code, 405)
+
+    def test_delete_logar(self):
+        """Esperado status 405 metodo não autorizado """
+        response = self.client.delete('/lista_de_tarefas/logar/')
+        self.assertEqual(response.status_code, 405)
+
+

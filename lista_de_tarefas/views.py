@@ -9,6 +9,7 @@ from django.contrib import messages
 from .models import Tarefa
 from .formulario import FormularioTarefas
 # Create your views here.
+@require_http_methods(["GET"])
 def index(request):
     return render(request, 'lista_de_tarefas/index.html')
 
@@ -68,6 +69,7 @@ def deslogar(request):
         print(e)
         messages.error(request, f'Erro ao deslogar usuário. Tente novamente!')
         return redirect('exibir_tarefas')
+
 
 @require_http_methods(["GET"])
 def exibir_tarefas(request):
