@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html  data-bs-theme="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %} Portifolio {% endblock %}</title>
+    <link rel="stylesheet" href=" {% static 'portifolio/assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href=" {% static 'portifolio/assets/css/aos.min.css' %}">
+    <link rel="stylesheet" href=" {% static 'portifolio/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href=" {% static 'portifolio/assets/css/Hero-Clean-Reverse-images.css' %}">
+    <link rel="stylesheet" href=" {% static 'portifolio/assets/css/Lista-Productos-Canito.css' %}">
+    <link rel="stylesheet" href=" {% static 'portifolio/assets/css/Navbar-Right-Links-icons.css' %}">
+
+</head>
+<body>
+    <header>
+        {% block header %}
+            {% include 'portifolio/header.html' %}
+        {% endblock header %}
+    </header>
+
+    <main>
+        {% block content %}
+
+        {% endblock content %}
+
+
+        <script src="{% static 'portifolio/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'portifolio/assets/js/aos.min.js' %}"></script>
+        <script src="{% static 'portifolio/assets/js/bs-init.js' %}"></script>
+        <script src="{% static 'portifolio/assets/js/mode.js' %}" > </script>
+    </main>
+
+    <footer>
+        {% block footer %}
+            {% include 'portifolio/footer.html' %}
+        {% endblock footer %}
+    </footer>
+</body>
+</html>
