@@ -20,10 +20,13 @@ from django.contrib import admin
 from django.urls.conf import include
 
 from portifolio.urls import urlpatterns as urls_portifolio
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(urls_portifolio)),
     path('lista_de_tarefas/', include('lista_de_tarefas.urls')),
-
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,7 +14,7 @@ class Formulario(models.Model):
 class Projetos(models.Model):
     nome = models.CharField(max_length=50, blank=False)
     descricao = models.TextField(max_length=1000, blank=False)
-    imagem = models.ImageField(upload_to='portifolio/static/portifolio/img', blank=False)
+    imagem = models.ImageField(upload_to='portifolio/projetos', blank=False)
 
     def __str__(self):
         return self.nome
