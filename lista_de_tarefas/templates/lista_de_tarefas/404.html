@@ -1,0 +1,17 @@
+{% extends 'lista_de_tarefas/base.html' %}
+{% load static %}
+
+{% block title %}Pagina NÃO Encontrada{% endblock %}
+
+{% block content %}
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row row-cols-1 d-flex justify-content-center align-items-center">
+                <div class="col-md-10 text-center"><img class="img-fluid w-100" src="{% static 'lista_de_tarefas/assets/img/illustrations/404.svg' %}"></div>
+                <div class="col text-center">
+                    <h2 class="display-3 fw-bold mb-4">Pagina NÃO encontrada</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

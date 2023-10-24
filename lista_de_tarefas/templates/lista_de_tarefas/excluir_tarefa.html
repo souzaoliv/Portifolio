@@ -1,26 +1,27 @@
-{% extends 'lista_de_tarefas/base.html' %}
-{% load static %}
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
 
-{% block title %}
-    <title> Deletar Tarefa </title>
-{% endblock title %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>lista_de_tarefa</title>
 
+</head>
 
-
-{% block content %}
-
-        <div class="container-fluid w-50 p-3">
-            <div class="d-flex justify-content-center">
-                <h1>Deletar Tarefa</h1>
-            </div>
-            <div class="container-fluid">
-                <form method="POST" class="d-flex justify-content-center flex-column">
-                    {% csrf_token %}
-                    {{form}}
-                    <button type="submit" class="btn btn-danger"> Deletar </button>
-                </form>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-3 text-center">Excluir Tarefa</h1>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <form><input class="form-control" type="text" readonly=""><textarea class="form-control" readonly=""></textarea><input class="btn btn-danger" type="submit"></form>
+            </div>
+        </div>
+    </div>
 
+</body>
 
-{% endblock content %}
+</html>

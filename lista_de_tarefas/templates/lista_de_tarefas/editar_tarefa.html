@@ -1,24 +1,19 @@
 {% extends 'lista_de_tarefas/base.html' %}
 {% load static %}
 
-{% block title %}
-    <title> Editar Tarefa </title>
-{% endblock title %}
-
+{% block title %}Editar Tarefas{% endblock %}
 
 {% block content %}
-
-        <div class="container-fluid w-50 p-3 ">
-            <div class="d-flex justify-content-center">
-                <h1>Editar Tarefa</h1>
-            </div>
-            <div class="container-fluid">
-                <form method="POST" class="d-flex justify-content-center flex-column">
-                    {% csrf_token %}
-                    {{form}}
-                    <button type="submit" class="btn btn-warning">Editar</button>
-                </form>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-3 text-center">Editar Tarefa</h1>
             </div>
         </div>
-
-{% endblock content %}
+        <div class="row">
+            <div class="col">
+                <form><input class="form-control" type="text" name="nome" placeholder="Nome" maxlength="100" required=""><textarea class="form-control" name="descricao" placeholder="Descrição" maxlength="500" required=""></textarea><input class="btn btn-warning" type="submit"></form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

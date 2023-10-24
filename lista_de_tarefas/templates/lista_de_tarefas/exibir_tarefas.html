@@ -1,57 +1,104 @@
-{% extends 'lista_de_tarefas/base.html' %}
-{% load static %}
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
 
-{% block title %}
-    <title> Exibir tarefas </title>
-{% endblock title %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>lista_de_tarefa</title>
 
+</head>
 
-{% block content %}
-
-        <div class="container-fluid mw-100">
-            {% if tarefas %}
-            <div class="d-flex justify-content-center">
-                <h1>Tarefas</h1>
-            </div>
-            <div class="container-fluid">
-                <table class="table table-striped container-fluid d-block">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Descricao</th>
-                            <th scope="col">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for tarefa in tarefas %}
-                        <tr>
-                            <td>{{ tarefa.nome }}</td>
-                            <td>{{ tarefa.descricao }}</td>
-                            <td class="">
-                                <a class="btn btn-warning btn-lg me-1" role="button" href="{% url 'editar_tarefa' tarefa.pk %}">Editar </a>
-                                <a class="btn btn-danger btn-lg me-1" role="button" href="{% url 'excluir_tarefa' tarefa.pk %}">Deletar </a>
-                            </td>
-
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-
-                </table>
-                <a class="btn btn-primary btn-lg me-2" role="button" href="{% url 'criar_tarefa' %}">Criar Tarefa</a>
-
-            </div>
-            {% else %}
-            <div class="container py-4 py-xl-5">
-                <div class="row gy-4 gy-md-0">
-                    <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
-                        <div style="max-width: 350px;">
-                            <h2 class="text-uppercase fw-bold"><span style="color: rgb(35, 33, 21); background-color: rgb(254, 253, 252);">Cria sua tarefas aqui e tire do seu cerebro.</span></h2>
-                            <p class="my-3">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</p><a class="btn btn-primary btn-lg me-2" role="button" href="{% url 'criar_tarefa' %}">Criar Tarefa</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
+<body>
+    <div class="container">
+        <div class="table-responsive text-start" style="overflow: auto;display: inline-block;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição&nbsp;</th>
+                        <th>Acão</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cell CellCell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td class="flex-column"><a class="flex-column" href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a class="flex-column" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Cell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td class="flex-column"><a href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Cell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td><a href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Cell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td><a href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Cell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td><a href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Cell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td><a href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Cell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td><a href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Cell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td><a href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Cell</td>
+                        <td><span style="color: rgb(33, 37, 41);">Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.</span><a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a>&nbsp;Torne-se focado, organizado e calmo com Lista de Tarefas. O gerenciador de tarefas e aplicativo de lista de tarefas número 1000 do mundo.<a href="http://127.0.0.1:8000/lista_de_tarefas/logar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Login</span></a><a href="http://127.0.0.1:8000/lista_de_tarefas/cadastrar/"><span style="color: var(--bs-btn-color); background-color: var(--bs-btn-bg);">Cadastrar</span></a></td>
+                        <td><a href="#"><i class="fas fa-edit fs-2 text-warning"></i></a><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-2 text-danger">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"></path>
+                                </svg></a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
+    <div class="container"><button class="btn btn-primary d-flex m-auto" type="button" style="background: var(--bs-blue);">Criar Nova Tarefa</button></div>
+    <hr>
 
-{% endblock content %}
+</body>
+
+</html>
