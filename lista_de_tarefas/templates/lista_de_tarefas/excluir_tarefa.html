@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>lista_de_tarefa</title>
+{% block title %}Excluir Tarefas{% endblock %}
 
-</head>
-
-<body>
-    <div class="container">
+{% block content %}
+    <div class="container" style="min-height: 60vh;">
         <div class="row">
             <div class="col">
                 <h1 class="display-3 text-center">Excluir Tarefa</h1>
@@ -17,11 +12,13 @@
         </div>
         <div class="row">
             <div class="col">
-                <form><input class="form-control" type="text" readonly=""><textarea class="form-control" readonly=""></textarea><input class="btn btn-danger" type="submit"></form>
+                <form>
+                    {% csrf_token %}
+                    <input class="form-control m-3" type="text" readonly="">
+                    <textarea class="form-control m-3" readonly=""></textarea>
+                    <input class="btn btn-danger m-3" type="submit">
+                </form>
             </div>
         </div>
     </div>
-
-</body>
-
-</html>
+{% endblock %}

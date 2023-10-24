@@ -12,7 +12,7 @@
                     <h2 class="display-6 fw-bold mb-5"><span class="underline pb-1"><strong>Login</strong><br></span></h2>
                     <form data-bs-theme="light" action="{% url 'logar' %}" method="post">
                         {% csrf_token %}
-                        <div class="mb-3"><input class="shadow form-control" type="email" name="username" placeholder="Username"></div>
+                        <div class="mb-3"><input class="shadow form-control" type="text" name="username" placeholder="Username"></div>
                         <div class="mb-3"><input class="shadow form-control" type="password" name="password" placeholder="Password"></div>
                         <div class="mb-5"><button class="btn btn-primary shadow" type="submit">Log in</button></div>
                         {% if messages %}

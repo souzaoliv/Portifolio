@@ -4,7 +4,7 @@
 {% block title %}Editar Tarefas{% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container" style="min-height: 60vh;">
         <div class="row">
             <div class="col">
                 <h1 class="display-3 text-center">Editar Tarefa</h1>
@@ -12,7 +12,12 @@
         </div>
         <div class="row">
             <div class="col">
-                <form><input class="form-control" type="text" name="nome" placeholder="Nome" maxlength="100" required=""><textarea class="form-control" name="descricao" placeholder="Descrição" maxlength="500" required=""></textarea><input class="btn btn-warning" type="submit"></form>
+                <form>
+                    {% csrf_token %}
+                    <input class="form-control m-3" type="text" name="nome" placeholder="Nome" maxlength="100" required="">
+                    <textarea class="form-control m-3" name="descricao" placeholder="Descrição" maxlength="500" required=""></textarea>
+                    <input class="btn m-3" type="submit" style="color: var(--bs-light);background: var(--bs-blue);">
+                </form>
             </div>
         </div>
     </div>
