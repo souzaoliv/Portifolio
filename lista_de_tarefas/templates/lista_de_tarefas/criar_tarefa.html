@@ -13,11 +13,18 @@
         <div class="m-3"></div>
         <div class="row ">
             <div class="col">
-                <form>
+                <form  method="POST" action="{% url 'criar_tarefa' %}">
                     {% csrf_token %}
                     <input class="form-control m-3" type="text" name="nome" placeholder="Nome" maxlength="100" required="">
                     <textarea class="form-control m-3" name="descricao" placeholder="Descrição" maxlength="500" required=""></textarea>
                     <input class="btn m-3" type="submit" style="color: var(--bs-light);background: var(--bs-blue);">
+                    {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} text-center">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                         {% endif %}
                 </form>
             </div>
         </div>

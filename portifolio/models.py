@@ -22,6 +22,14 @@ class Projetos(models.Model):
 class ProjetosTags(models.Model):
     projeto = models.ForeignKey(Projetos, on_delete=models.CASCADE)
     tag = models.CharField(max_length=50, blank=False)
-
     def __str__(self):
         return self.tag
+
+class ProjetosFuncionalidades(models.Model):
+    projeto = models.ForeignKey(Projetos, on_delete=models.CASCADE)
+    funcionalidade = models.CharField(max_length=50, blank=False)
+    descricao = models.TextField(max_length=1000, blank=False)
+    def __str__(self):
+        return self.funcionalidade
+
+

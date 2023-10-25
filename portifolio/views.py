@@ -1,14 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Formulario, Projetos, ProjetosTags
+from .models import Formulario, Projetos, ProjetosTags, ProjetosFuncionalidades
 from . formulario import FormularioCadastro
 # Create your views here.
 def index(request):
     queryset_projetos = Projetos.objects.all()
-    queryset_projetos_tags = ProjetosTags.objects.all()
+    projetos_detalhados = []
+
+    for projeto in queryset_projetos:
+        tags = ProjetosTags.objects.filter(projeto=projeto)
+        funcionalidades = ProjetosFuncionalidades.objects.filter(projeto=projeto)
+        projetos_detalhados.append(
+            {'projeto': projeto, 'projetos_tags': tags, 'projetos_funcionalidades': funcionalidades})
+
     context = {
-        'projetos': queryset_projetos,
-        'projetos_tags': queryset_projetos_tags
+        'projetos_detalhados': projetos_detalhados
     }
     if request.method == "GET":
         return render(request, 'portifolio/index.html', context)

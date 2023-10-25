@@ -12,11 +12,11 @@
         </div>
         <div class="row">
             <div class="col">
-                <form>
+                <form method="POST" class="d-flex justify-content-center flex-column">
                     {% csrf_token %}
-                    <input class="form-control m-3" type="text" name="nome" placeholder="Nome" maxlength="100" required="">
-                    <textarea class="form-control m-3" name="descricao" placeholder="Descrição" maxlength="500" required=""></textarea>
-                    <input class="btn m-3" type="submit" style="color: var(--bs-light);background: var(--bs-blue);">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit" class="btn btn-warning">Editar</button>
                 </form>
             </div>
         </div>

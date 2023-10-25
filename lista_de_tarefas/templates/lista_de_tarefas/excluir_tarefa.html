@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+{% extends 'lista_de_tarefas/base.html' %}
+{% load static %}
 
 {% block title %}Excluir Tarefas{% endblock %}
 
@@ -12,11 +12,11 @@
         </div>
         <div class="row">
             <div class="col">
-                <form>
+                <form method="POST" class="d-flex justify-content-center flex-column">
                     {% csrf_token %}
-                    <input class="form-control m-3" type="text" readonly="">
-                    <textarea class="form-control m-3" readonly=""></textarea>
-                    <input class="btn btn-danger m-3" type="submit">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit" class="btn btn-danger"> Excluir </button>
                 </form>
             </div>
         </div>
