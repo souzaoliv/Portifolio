@@ -6,16 +6,18 @@ from . formulario import FormularioCadastro
 def index(request):
     queryset_projetos = Projetos.objects.all()
     projetos_detalhados = []
+    if queryset_projetos.exists():
+        for projeto in queryset_projetos:
+            tags = ProjetosTags.objects.filter(projeto=projeto)
+            funcionalidades = ProjetosFuncionalidades.objects.filter(projeto=projeto)
+            projetos_detalhados.append(
+                {'projeto': projeto, 'projetos_tags': tags, 'projetos_funcionalidades': funcionalidades})
 
-    for projeto in queryset_projetos:
-        tags = ProjetosTags.objects.filter(projeto=projeto)
-        funcionalidades = ProjetosFuncionalidades.objects.filter(projeto=projeto)
-        projetos_detalhados.append(
-            {'projeto': projeto, 'projetos_tags': tags, 'projetos_funcionalidades': funcionalidades})
-
-    context = {
-        'projetos_detalhados': projetos_detalhados
-    }
+            context = {
+                'projetos_detalhados': projetos_detalhados
+            }
+    else:
+        context = {}
     if request.method == "GET":
         return render(request, 'portifolio/index.html', context)
     if request.method == "POST":
