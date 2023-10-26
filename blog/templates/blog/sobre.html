@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" id="mainNav">
+        <div class="container"><a class="navbar-brand" href="{% url 'blog:index_blog' %}">chamaodev</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'blog:index_blog' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'blog:sobre' %}">About us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background: var(--bs-body-color);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto position-relative">
+                    <div class="site-heading">
+                        <h1>Sobre isto</h1><span class="subheading">Será um dos locais onde irei compartilhar meus conhecimentos e ideias.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <p>
+                    Olá! Meu nome é Lucas Gabriel, tenho 24 anos e sou natural de Itabira, MG, onde atualmente resido. Eu estou cursando Engenharia da Computação, refletindo minha paixão tanto por tecnologias de software quanto de hardware.
+                </p>
+                <p>
+                    Minha jornada no desenvolvimento web tem sido impulsionada pelo Framework Django para o backend e APIs REST, juntamente com a criação de aplicativos responsivos e simples utilizando o Bootstrap. Através dessa combinação, sou capaz de realizar projetos FullStack iniciais.
+                </p>
+                <p>
+                    O desenvolvimento deste blog é uma manifestação concreta das minhas habilidades FullStack em Python, e meu objetivo é compartilhar conhecimento e ideias, além de utilizar este espaço como meu portfólio.
+                </p>
+                <p>
+                    Fique ligado para as próximas novidades, pois grandes coisas simples estão a caminho.
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr>
+{% endblock content %}

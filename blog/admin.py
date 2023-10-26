@@ -6,7 +6,7 @@ from django.db import models
 # Register your models here.
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'summary', 'author', 'publish', 'status')
+    list_display = ('title', 'slug', 'author', 'publish', 'status')
     search_fields = ('title', 'body')
     list_filter = ('status', 'created', 'publish', 'author')
     prepopulated_fields = {'slug': ('title',)}

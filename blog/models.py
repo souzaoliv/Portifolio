@@ -27,8 +27,11 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT)
 
+
+
+
     objects = models.Manager()
-    published = PublishedManager()
+    pushlished = PublishedManager()
 
     class Meta:
         ordering = ('-publish',)
@@ -41,6 +44,9 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog:detail_post', args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
+
+    def get_tags(self):
+        return self.posttags_set.all()
 
 class PostTags(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
