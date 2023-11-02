@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, PostTags
+from .models import Post, PostTags, Tags, Categorias, PostCategorias
 from ckeditor.widgets import CKEditorWidget
 from django.db import models
 
@@ -17,4 +17,8 @@ class PostAdmin(admin.ModelAdmin):
         models.TextField: {'widget': CKEditorWidget},
     }
 
+
+admin.site.register(Tags)
+admin.site.register(Categorias)
 admin.site.register(PostTags)
+admin.site.register(PostCategorias)

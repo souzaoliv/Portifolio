@@ -48,10 +48,23 @@ class Post(models.Model):
     def get_tags(self):
         return self.posttags_set.all()
 
-class PostTags(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+class Tags(models.Model):
     tag = models.CharField(max_length=250, blank=False)
-
     def __str__(self):
         return self.tag
 
+class PostTags(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tags, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.tag
+class Categorias (models.Model):
+    categoria = models.CharField(max_length=250, blank=False)
+    def __str__(self):
+        return self.categoria
+class PostCategorias(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.categoria

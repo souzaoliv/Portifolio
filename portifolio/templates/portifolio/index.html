@@ -163,35 +163,35 @@
         </div>
     </div>
     <hr>
-    {% if projetos_detalhados %}
-        {% for projeto in projetos_detalhados %}
+    {% if projetos %}
+        {% for projeto in projetos %}
     <div class="container py-4 py-xl-5" id="projetos">
         <div class="row">
             <div class="col">
-                <h1 class="d-flex d-md-flex justify-content-center justify-content-md-center">{{ projeto.projeto.nome }}</h1>
+                <h1 class="d-flex d-md-flex justify-content-center justify-content-md-center">{{ projeto.nome }}</h1>
             </div>
 
         </div>
         <div class="row row-cols-1 row-cols-md-2">
-            <div class="col"><img class="rounded w-100 h-100 fit-cover img-fluid" style="min-height: 300px;" src="{{ projeto.projeto.imagem.url }}"></div>
+            <div class="col"><img class="rounded w-100 h-100 fit-cover img-fluid" style="min-height: 300px;" src="{{ projeto.imagem.url }}"></div>
             <div class="col d-flex flex-column justify-content-center p-4" data-aos="fade">
                 <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
 
                     <div>
-                        <p class="lead" data-aos="slide-up" data-aos-duration="850">{{ projeto.projeto.descricao }}</p>
-                        {% if projeto.projetos_tags %}
-                        {% for tag in projeto.projetos_tags %}
+                        <p class="lead" data-aos="slide-up" data-aos-duration="850">{{ projeto.descricao }}</p>
+                        {% if projeto.tags %}
+                        {% for tag in projeto.tags %}
                         <span class="badge bg-primary" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="1000" style="margin: 5px;">{{ tag.tag }}</span>
                         {% endfor %}
                         {% endif %}
                     </div>
                 </div>
-                {% if projeto.projetos_funcionalidades %}
-                    {% for funcionalidade in projeto.projetos_funcionalidades %}
+                {% if projeto.funcionalidades %}
+                    {% for funcionalidade in projeto.funcionalidades %}
                 <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
                     <div data-aos="slide-up" data-aos-duration="850">
                         <h4 data-aos="slide-up" data-aos-duration="850">{{ funcionalidade.funcionalidade }}</h4>
-                        <p class="lead" data-aos="slide-up" data-aos-duration="850">{{ funcionalidade.descricao }}.</p>
+                        <p class="lead" data-aos="slide-up" data-aos-duration="850">{{ funcionalidade.funcionalidade.descricao }}</p>
                     </div>
 
                 </div>
@@ -199,7 +199,7 @@
                 {% endif %}
                 <div>
                     <div>
-                        <a data-aos="zoom-in" data-aos-duration="600" data-aos-delay="1000" href="{{ projeto.projeto.link }}">Site&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-right">
+                        <a data-aos="zoom-in" data-aos-duration="600" data-aos-delay="1000" href="{{ projeto.link }}">Site&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-right">
                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
                             </svg>
                         </a>
@@ -314,12 +314,14 @@
                 </div>
                 <div class="col-md-6 col-lg-5 col-xl-4">
                     <div>
-                        <form class="p-3 p-xl-4" method="post" action="{% url 'index' %}">
+                        <form class="p-3 p-xl-2" method="post" action="{% url 'index' %}">
                             {% csrf_token %}
                             <div class="mb-3"><input class="form-control" type="text" id="name-1" name="nome" placeholder="Nome" for="nome" required maxlength="50"></div>
                             <div class="mb-3"><input class="form-control" type="email" id="email-1" name="email" placeholder="Email" for="email" required maxlength="50" ></div>
                             <div class="mb-3"><textarea class="form-control" id="message-1" name="mensagem" rows="6" placeholder="Mensagem" for="mensagem" required maxlength="1000" ></textarea></div>
-                            <div><button class="btn btn-primary d-block w-100" type="submit">Enviar</button></div>
+                            <div class="">
+                                <button class="btn btn-primary d-block w-100" type="submit">Enviar</button>
+                            </div>
                             <div>
                                 {% if sucesso %}
                                             <p class="text-success">{{ sucesso }}</p>
