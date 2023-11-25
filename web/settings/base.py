@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'lista_de_tarefas',
     'blog',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'imobiliaria',
 ]
 
 MIDDLEWARE = [

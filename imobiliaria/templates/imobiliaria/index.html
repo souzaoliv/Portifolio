@@ -1,0 +1,28 @@
+{% extends 'imobiliaria/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="min-vh-100">
+        <div class="d-flex align-items-center justify-content-between flex-column ">
+            <h1 class="text-center mb-5">
+                Joge o jogo imobiliariio
+            </h1>
+            <div class="d-flex align-items-center justify-content-around flex-row flex-wrap mb-5 w-100">
+                <div class="card card-editado p-2 mb-4">
+                    <h3>Inicie com 1 milhão de moedas</h3>
+                    <p>Para comprar, alugar ou contruir seu imperio</p>
+                </div>
+                <div class="card card-editado p-2 mb-4">
+                    <h3>Coloque suas casas para alugar e ganhe rendimentos</h3>
+                    <p>Se torne um investidor, com controle total, independente do preço de mercado, voce tem liberdade para determinar tudo.</p>
+                </div>
+                <div class="card card-editado p-2 mb-4">
+                    <h3>Se torne o homem mais rico do jogo</h3>
+                    <p>Use estrategia para vender, alugar, comprar e contruir um imperio, e lembre-se dinheiro no banco nem sempre te faz um grande vencedor. </p>
+                </div>
+            </div>
+            <div class="mb-5">
+                <a href="{% url 'imobiliaria:logar' %}"><button>Jogar ! </button></a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

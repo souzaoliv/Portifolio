@@ -1,0 +1,8 @@
+body{
+    background: grey;
+}
+.card-editado {
+    width: 20rem;
+    min-height: 15rem;
+    background: #fff;
+}

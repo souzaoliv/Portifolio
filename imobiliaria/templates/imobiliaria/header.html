@@ -1,0 +1,19 @@
+{% load static %}
+<div>
+    <div class="w-100 d-flex flex-row p-4 align-items-center justify-content-around flex-wrap">
+        <div>
+            <a href="{% url 'imobiliaria:index' %}" class="text-decoration-none" style="color: black">
+                <div>
+                    <img src="{% static 'portifolio/assets/img/C.svg' %}" width="50" height="50">
+                    <span>
+                        chamaodev
+                    </span>
+                </div>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'imobiliaria:logar' %}"><button>Entrar ! </button></a>
+            <a href="{% url 'imobiliaria:cadastrar' %}"><button>Registrar ! </button></a>
+        </div>
+    </div>
+</div>
