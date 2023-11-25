@@ -13,7 +13,3 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 django_on_heroku.settings(locals())
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'media')
-]
